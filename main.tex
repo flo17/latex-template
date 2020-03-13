@@ -1,0 +1,180 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% School of Engineering Fribourg - LaTeX Template                              %
+% Florent Kilchoer - 2020                                                      %
+% Special Thanks to Yannis Huber for theme inspiration                         %
+%                                                                              %
+% THIS IS NOT AN OFFICIAL TEMPLATE                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[
+    fr,
+    twoside]{customTemplate}
+
+%% Glossary & Acronyms
+\makeglossaries
+
+\input{glossary}
+\input{acronyms}
+
+%% REFERENCES
+\addbibresource{sources.bib}
+
+%% REVISIONS
+\AddRevision{0.1.0}{23 février 2020}{Rédaction du cahier des charges}
+%\AddRevision{1.0.0}{30 janvier 2020}{Rendu final}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Comment these lines to hide informations
+%% DOCUMENT INFORMATION
+\title{Title}
+\subtitle{Subtitle}
+%\course{Course}
+\students{Florent Kilchoer}{}
+\supervisors{Serge Ayer}{Jacques Supcik}
+
+
+% Uncomment this line to use custom/no date (this replace the last revision date)
+%\lastReleaseDate{\today}
+%\lastReleaseDate{\empty}
+
+\usepackage{xifthen}% provides \isempty test
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\maketitlepage{}
+% OPTIONAL : Display the revision table
+\makerevisiontable{}
+\cleardoublepage
+
+% OPTIONAL : The abstract has to be written in abstract.tex
+%\input{abstract}
+
+% OPTIONAL : Uncomment the following line to add a table of content
+\maketableofcontent{}
+\cleardoublepage
+
+
+
+
+%\smallheader
+\fullheader
+%\noheader
+
+\pagenumbering{arabic} 
+
+%\begin{comment}
+\section{Code without Title}
+\begin{code}{python}{}
+String t
+def max(int a, int b):
+    pass
+\end{code}
+\begin{verbatim}
+\begin{code}{python}{}
+String t
+def max(int a, int b):
+    pass   
+\end{code}
+\end{verbatim}
+\section{Code with Title}
+\begin{code}{python}{Code with title}
+String t
+def max(int a, int b):
+    pass
+\end{code}
+\begin{verbatim}
+\begin{code}{python}{Code with title}
+String t
+def max(int a, int b):
+    pass   
+\end{code}
+\end{verbatim}
+
+\section{Highlitext text}
+\subsection{Normal text}
+\verb+\hl{Highlighted Text}+ : \hl{Highlighted Text}
+\subsection{In code}
+\begin{code}{python}{}
+!\colorbox{green}{String t}!
+def max(int a, int b):
+    !\colorbox{yellow}{pass}!
+\end{code}
+\begin{verbatim}
+\begin{code}{python}{}
+!\colorbox{green}{String t}!
+def max(int a, int b):
+    !\colorbox{yellow}{pass}!
+\end{code}    
+\end{verbatim}
+
+
+
+\section{Todo}
+
+\verb+\todo[inline]{Text}+\\
+\verb+\todo{Text}+\\
+\verb+\todo[color=green]{Text}+
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \todo[inline]{An inline todo} Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+\todo{A todo note}
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+\todo[color=green]{And a green note}
+
+\missingfigure{Add a picture here}
+
+Missing figures : \verb+\missingfigure{Text}+
+
+\listoftodos
+List of todos : \verb+\listoftodos+
+
+
+\section{Acronmys / Glossary}
+Only used term are displayed in Acronyms/Glossary list
+
+Example :
+\begin{itemize}
+    \item \verb+\acrshort{mqtt}+ : \acrshort{mqtt}
+    \item \verb+\acrlong{mqtt}+ : \acrlong{mqtt}
+    \item \verb+\acrfull{mqtt}+ : \acrfull{mqtt}
+    \item \verb+\gls{cicd}+ : \gls{cicd}
+\end{itemize}
+
+\section{Source}
+Add entry in sources.bib and use \verb+\cite{sourceName}+ to cite it \cite{sourceName}.
+Use \verb+\printbibliography{}+ to print the bibliography :
+\printbibliography{}
+
+\section{Graphviz}
+\graphviz{s01exa}{'
+    graph G { 
+        node[shape=rectangle]
+        n0 [label="a(Z)"];
+        n1 [label="prime(Z),a(8)"];
+        n11 [label="a(8)"];
+        n12 [label="a(8)"];
+        n13 [label="a(8)"];
+        s0 [label="SUCCES"];
+        s1 [label="SUCCES"];
+        s2 [label="SUCCES"];
+        s3 [label="SUCCES"];
+        n0 -- n1 [label="(X:Z)"];
+        n0 -- s0 [label="(X:8)"];
+        n1 -- n11[label="(Z:2)"];
+        n1 -- n12[label="(Z:3)"];
+        n1 -- n13[label="(Z:5)"];
+        n11 -- s1;
+        n12 -- s2;
+        n13 -- s3;
+    }'}{width=0.5\textwidth}{Custom label}
+%\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%% Acronmys / Glossary / Sources
+\newpage
+\printglossary[type=\acronymtype]{}
+\printglossary[]{}
+\printbibliography{}
+\end{document}
